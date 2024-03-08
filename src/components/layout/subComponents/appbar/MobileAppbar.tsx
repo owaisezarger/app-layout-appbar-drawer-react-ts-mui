@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, IconButton, Toolbar, Box } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Box, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NavbarItems from "./NavbarItems";
 
@@ -37,9 +37,14 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({
             alignItems: "center",
           }}
         >
-          <IconButton onClick={handleToggle} size="large" disableRipple>
-            <MenuIcon />
-          </IconButton>
+          <Box display="flex" alignItems="center">
+            <IconButton onClick={handleToggle} size="large" disableRipple>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h5" color="slategray" fontWeight="bold">
+              Appbar
+            </Typography>
+          </Box>
           <Box>
             <NavbarItems isOpen={isOpen} />
           </Box>

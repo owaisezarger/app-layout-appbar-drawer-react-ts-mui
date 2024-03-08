@@ -12,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const drawerStyles = {
     "& .MuiDrawer-paper": {
       width: { sm: "17em" },
-      backgroundColor: "#FEECE2",
+      backgroundColor: "white",
       boxShadow: "rgba(0.05, 0.05, 0.05, 0.05) ",
       overflowX: "auto",
       px: "15px",

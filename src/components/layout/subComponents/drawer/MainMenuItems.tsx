@@ -1,9 +1,12 @@
+import React, { useState } from "react";
 import {
-  Box,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Typography,
 } from "@mui/material";
 import {
@@ -13,59 +16,152 @@ import {
   MonitorHeartOutlined as MonitorHeartOutlinedIcon,
   ReceiptLongOutlined as ReceiptLongOutlinedIcon,
 } from "@mui/icons-material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import CategoryIcon from "@mui/icons-material/Category";
+import { Link } from "react-router-dom";
 
 interface MenuItem {
   text: string;
   icon: JSX.Element;
   subMenuItems?: MenuItem[];
+  route?: string;
 }
 
 const mainMenuItems: MenuItem[] = [
-  { text: "Dashboard", icon: <DashboardCustomizeOutlinedIcon /> },
+  {
+    text: "Dashboard",
+    icon: <DashboardCustomizeOutlinedIcon />,
+    route: "/test",
+  },
+  {
+    text: "Customer",
+    icon: <PersonOutlineOutlinedIcon />,
+    route: "/customer",
+  },
+  { text: "Item", icon: <CategoryIcon />, route: "/item" },
   {
     text: "My Wallet",
     icon: <AccountBalanceWalletOutlinedIcon />,
+    route: "/test",
+    subMenuItems: [
+      { text: "Transactions", icon: <MonitorHeartOutlinedIcon /> },
+      { text: "Invoices", icon: <ReceiptLongOutlinedIcon /> },
+      { text: "Cards", icon: <CreditCardOutlinedIcon /> },
+    ],
   },
   {
     text: "Transactions",
     icon: <MonitorHeartOutlinedIcon />,
+    route: "/test",
+    subMenuItems: [
+      { text: "Credit", icon: <ReceiptLongOutlinedIcon /> },
+      { text: "Debit", icon: <MonitorHeartOutlinedIcon /> },
+    ],
   },
-  { text: "Invoices", icon: <ReceiptLongOutlinedIcon /> },
-  { text: "Cards", icon: <CreditCardOutlinedIcon /> },
 ];
 
-const MainMenuItems: React.FC = () => {
+const MenuItemComponent: React.FC<{ item: MenuItem }> = ({ item }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <>
-      <Typography
-        variant="body2"
-        sx={{ mt: 2, fontSize: "1rem", fontWeight: "bold" }}
-      >
-        Main Menu
-      </Typography>
-      <List>
-        {mainMenuItems.map((item) => (
-          <ListItem key={item.text}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText
-                  primary={<Typography variant="body2">{item.text}</Typography>}
-                />
-              </Box>
-            </Box>
-          </ListItem>
-        ))}
-      </List>
+      {item.subMenuItems ? (
+        <Accordion
+          expanded={expanded}
+          onChange={handleClick}
+          sx={{
+            boxShadow: "none",
+            color: "slategray",
+            fontWeight: "bold",
+          }}
+          disableGutters
+        >
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <ListItemIcon sx={{ color: "lightgray" }}>{item.icon}</ListItemIcon>
+            <ListItemText
+              primary={
+                <Typography
+                  variant="body2"
+                  style={{ fontWeight: "bold", color: "lightslategray" }}
+                >
+                  {item.text}
+                </Typography>
+              }
+            />
+          </AccordionSummary>
+          <AccordionDetails>
+            <List sx={{ mt: -3 }}>
+              {item.subMenuItems.map((subItem, index) => (
+                <ListItem
+                  key={index}
+                  component={Link}
+                  to={subItem.route || "#"}
+                  sx={{
+                    paddingLeft: 0,
+                    boxShadow: "none",
+                    textDecoration: "none",
+                    color: "slategray",
+                    fontWeight: "bold",
+                  }}
+                >
+                  <ListItemIcon sx={{ color: "lightgray" }}>
+                    {subItem.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <Typography
+                        variant="body2"
+                        style={{ fontWeight: "bold", color: "lightslategray" }}
+                      >
+                        {subItem.text}
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      ) : (
+        <ListItem
+          component={Link}
+          to={item.route || "#"}
+          sx={{
+            textDecoration: "none",
+            color: "slategray",
+            fontWeight: "bold",
+          }}
+        >
+          <ListItemIcon sx={{ color: "lightgray" }}>{item.icon}</ListItemIcon>
+          <ListItemText
+            primary={
+              <Typography
+                variant="body2"
+                style={{ fontWeight: "bold", color: "lightslategray" }}
+              >
+                {item.text}
+              </Typography>
+            }
+          />
+        </ListItem>
+      )}
     </>
   );
 };
 
-export default MainMenuItems;
+const MainMenu: React.FC = () => {
+  return (
+    <List>
+      {mainMenuItems.map((item, index) => (
+        <MenuItemComponent key={index} item={item} />
+      ))}
+    </List>
+  );
+};
+
+export default MainMenu;
