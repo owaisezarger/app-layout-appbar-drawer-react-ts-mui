@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import App from "../App";
 import Loading from "../components/common/Loading";
+import RepositoryLink from "../components/RepoLink";
 const Login = lazy(() => import("../components/login"));
 const Signup = lazy(() => import("../components/login/subComponents/Signup"));
 const ForgotPassword = lazy(
@@ -14,15 +15,8 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/test",
-        element: (
-          <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex
-            rem beatae laudantium tenetur ipsa odit magnam illo quidem quisquam
-            veniam debitis nostrum repellendus vel facilis cupiditate maxime,
-            reiciendis praesentium? z
-          </h1>
-        ),
+        path: "/",
+        element: <RepositoryLink />,
       },
     ],
   },
