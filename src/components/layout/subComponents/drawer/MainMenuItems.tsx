@@ -32,18 +32,18 @@ const mainMenuItems: MenuItem[] = [
   {
     text: "Dashboard",
     icon: <DashboardCustomizeOutlinedIcon />,
-    route: "/test",
+    route: "/",
   },
   {
     text: "Customer",
     icon: <PersonOutlineOutlinedIcon />,
-    route: "/customer",
+    route: "/",
   },
-  { text: "Item", icon: <CategoryIcon />, route: "/item" },
+  { text: "Item", icon: <CategoryIcon />, route: "/" },
   {
     text: "My Wallet",
     icon: <AccountBalanceWalletOutlinedIcon />,
-    route: "/test",
+    route: "/",
     subMenuItems: [
       { text: "Transactions", icon: <MonitorHeartOutlinedIcon /> },
       { text: "Invoices", icon: <ReceiptLongOutlinedIcon /> },
@@ -53,7 +53,7 @@ const mainMenuItems: MenuItem[] = [
   {
     text: "Transactions",
     icon: <MonitorHeartOutlinedIcon />,
-    route: "/test",
+    route: "/",
     subMenuItems: [
       { text: "Credit", icon: <ReceiptLongOutlinedIcon /> },
       { text: "Debit", icon: <MonitorHeartOutlinedIcon /> },
