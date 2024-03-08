@@ -19,7 +19,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({
   return (
     <AppBar
       sx={{
-        bgcolor: "#EED3D9",
+        bgcolor: "#FBF9F1",
         position: { xs: "relative", sm: "sticky" },
       }}
     >
