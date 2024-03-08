@@ -44,7 +44,7 @@ const Login: React.FC<LoginProps> = () => {
   };
 
   const handleLoginClick = () => {
-    navigate("/test");
+    navigate("/");
   };
 
   const theme = useTheme();
