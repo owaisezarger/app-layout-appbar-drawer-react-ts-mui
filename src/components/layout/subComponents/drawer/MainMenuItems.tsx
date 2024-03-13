@@ -30,33 +30,33 @@ interface MenuItem {
 
 const mainMenuItems: MenuItem[] = [
   {
-    text: "Dashboard",
+    text: "Home",
     icon: <DashboardCustomizeOutlinedIcon />,
     route: "/",
   },
   {
-    text: "Customer",
+    text: "Profile",
     icon: <PersonOutlineOutlinedIcon />,
     route: "/",
   },
   { text: "Item", icon: <CategoryIcon />, route: "/" },
   {
-    text: "My Wallet",
+    text: "Menu 1",
     icon: <AccountBalanceWalletOutlinedIcon />,
     route: "/",
     subMenuItems: [
-      { text: "Transactions", icon: <MonitorHeartOutlinedIcon /> },
-      { text: "Invoices", icon: <ReceiptLongOutlinedIcon /> },
-      { text: "Cards", icon: <CreditCardOutlinedIcon /> },
+      { text: "Sub menu 1", icon: <MonitorHeartOutlinedIcon /> },
+      { text: "Sub menu 2", icon: <ReceiptLongOutlinedIcon /> },
+      { text: "Sub menu 3", icon: <CreditCardOutlinedIcon /> },
     ],
   },
   {
-    text: "Transactions",
+    text: "Menu 2",
     icon: <MonitorHeartOutlinedIcon />,
     route: "/",
     subMenuItems: [
-      { text: "Credit", icon: <ReceiptLongOutlinedIcon /> },
-      { text: "Debit", icon: <MonitorHeartOutlinedIcon /> },
+      { text: "Sub menu 1", icon: <ReceiptLongOutlinedIcon /> },
+      { text: "Sub menu 2", icon: <MonitorHeartOutlinedIcon /> },
     ],
   },
 ];
